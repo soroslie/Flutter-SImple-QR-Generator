@@ -29,7 +29,7 @@ class QRScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (dataQR['upperText'] != null) Text(dataQR!['upperText']),
+              if (dataQR['upperText'] != null) CustomDecorationText(text: dataQR['upperText']),
               Container(
                 decoration: BoxDecoration(
                   boxShadow: [
@@ -64,11 +64,30 @@ class QRScreen extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                 ),
               ),
-              if (dataQR['bottomText'] != null) Text(dataQR!['bottomText'])
+              if (dataQR['bottomText'] != null) CustomDecorationText(text: dataQR['bottomText']),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class CustomDecorationText extends StatelessWidget {
+  const CustomDecorationText({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20) ,textAlign: TextAlign.center,)),
     );
   }
 }
